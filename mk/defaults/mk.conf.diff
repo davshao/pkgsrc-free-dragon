@@ -1,0 +1,29 @@
+--- mk.conf.orig	2015-07-25 19:04:18.442062000 -0700
++++ mk.conf	2015-07-25 18:36:15.282967000 -0700
+@@ -787,16 +787,21 @@
+ # Possible: any user name
+ # Default: cyrus
+ 
+-DBUS_GROUP?=	dbus
+-# Used in the dbus package to specify the group to run dbus as
+-# Possible: any group name
+-# Default: dbus
+-
+ DBUS_USER?=	dbus
+ # Used in the dbus package to specify the user to run dbus as
+ # Possible: any user name
+ # Default: dbus
+ 
++DBUS_GROUP?=	dbus
++# Used in the dbus package to specify the group to run dbus as
++# Possible: any group name but in practice equals ${DBUS_USER}
++# Default: dbus
++
++DBUS_SYSTEM_PID_FILE?=	pid	
++# Used in the dbus package to specify the name of the pid file 
++# Possible: any pid file name such as pid, messagebus.pid, or dbus.pid
++# Default: pid 
++
+ DEFANG_GROUP?=	defang
+ # Used in the mimedefang package to specify the group to run commands as
+ # Possible: any group name
