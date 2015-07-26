@@ -1,0 +1,15 @@
+--- Makefile.orig	2015-07-15 19:03:55.121593000 -0700
++++ Makefile	2015-07-19 08:51:47.600950000 -0700
+@@ -16,6 +16,12 @@
+ BUILD_DEFS+=	VARBASE
+ CONFIGURE_ARGS+=--localstatedir=${VARBASE:Q}
+ 
++.include "../../mk/bsd.prefs.mk"
++.if ${OPSYS} == "DragonFly"
++# Required for gcc5+
++CPP_PRECOMP_FLAGS+=	-P
++.endif
++
+ ###
+ ### Please see patches/patch-ab for details on this.
+ ###
