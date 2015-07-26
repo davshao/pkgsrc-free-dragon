@@ -1,0 +1,13 @@
+--- Makefile.orig	2015-05-28 19:59:23.000000000 -0700
++++ Makefile	2015-07-22 14:03:32.000000000 -0700
+@@ -24,6 +24,10 @@
+ CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4
+ .endif
+ 
++.if ${OPSYS} == "FreeBSD" || ${OPSYS} == "DragonFly"
++CFLAGS+=	-D_WITH_GETLINE=1
++.endif
++
+ BUILDLINK_API_DEPENDS.libdrm+=	libdrm>=2.4.7
+ 
+ .include "../../x11/modular-xorg-server/buildlink3.mk"
