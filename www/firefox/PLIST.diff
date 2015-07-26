@@ -1,0 +1,11 @@
+--- PLIST.orig	2015-07-23 06:58:57.000000000 -0700
++++ PLIST	2015-07-23 07:00:36.000000000 -0700
+@@ -2628,7 +2628,7 @@
+ lib/firefox/hyphenation/hyph_uk.dic
+ lib/firefox/libmozalloc.so
+ ${PLIST.mozglue}lib/firefox/libmozglue.so
+-lib/firefox/libmozjs.so
++${PLIST.libmozjs}lib/firefox/libmozjs.so
+ lib/firefox/libxul.so
+ lib/firefox/modules/AboutReader.jsm
+ lib/firefox/modules/ActivitiesService.jsm

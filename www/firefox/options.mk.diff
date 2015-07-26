@@ -1,0 +1,36 @@
+--- options.mk.orig	2015-07-23 06:51:04.000000000 -0700
++++ options.mk	2015-07-23 09:27:00.000000000 -0700
+@@ -3,6 +3,7 @@
+ PKG_OPTIONS_VAR=	PKG_OPTIONS.firefox
+ PKG_SUPPORTED_OPTIONS=	official-mozilla-branding
+ PKG_SUPPORTED_OPTIONS+=	alsa debug debug-info mozilla-jemalloc gnome pulseaudio webrtc
++PKG_SUPPORTED_OPTIONS+=	shared-js
+ PLIST_VARS+=		gnome jemalloc debug
+ 
+ .if ${OPSYS} == "Linux"
+@@ -16,6 +17,11 @@
+ PKG_SUGGESTED_OPTIONS+=	webrtc
+ .endif
+ 
++# On DragonFly libmozjs.so is invalid when --enable-shared-js is set.
++.if ${OPSYS} != "DragonFly"
++PKG_SUGGESTED_OPTIONS+= shared-js	
++.endif
++
+ .include "../../mk/bsd.options.mk"
+ 
+ .if !empty(PKG_OPTIONS:Malsa)
+@@ -97,3 +103,13 @@
+ .else
+ CONFIGURE_ARGS+=	--disable-webrtc
+ .endif
++
++PLIST_VARS+=		libmozjs
++.if !empty(PKG_OPTIONS:Mshared-js)
++# Disabled from https://bugzilla.mozilla.org/show_bug.cgi?id=977400
++# Not enabled on DragonFly from https://bugzilla.mozilla.org/show_bug.cgi?id=1112945
++CONFIGURE_ARGS+=	--enable-shared-js
++PLIST.libmozjs=		yes
++.else
++CONFIGURE_ARGS+=	--disable-shared-js
++.endif
