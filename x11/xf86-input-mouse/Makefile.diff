@@ -1,0 +1,11 @@
+--- Makefile.orig	2015-07-18 18:48:26.000000000 -0700
++++ Makefile	2015-07-18 22:40:51.000000000 -0700
+@@ -20,6 +20,8 @@
+ CONFIGURE_ENV+=	DRIVER_MAN_SUFFIX=4
+ .endif
+ 
++.include "options.mk"
++
+ .include "../../x11/randrproto/buildlink3.mk"
+ .include "../../x11/inputproto/buildlink3.mk"
+ .include "../../x11/kbproto/buildlink3.mk"
